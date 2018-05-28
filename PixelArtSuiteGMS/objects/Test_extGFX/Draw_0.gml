@@ -1,0 +1,1 @@
+draw_surface(layer1Surface,0,0);

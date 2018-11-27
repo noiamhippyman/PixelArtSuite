@@ -119,6 +119,14 @@
             }
         },
         {
+            "Key": "93c40f89-788b-4847-af19-48311d839bb1",
+            "Value": {
+                "id": "d236ee84-55bc-41e3-9e71-a560b63e314d",
+                "resourcePath": "scripts\\key_to_axis\\key_to_axis.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a9188620-a624-4a5a-83ae-a1b53faf038b",
             "Value": {
                 "id": "12a78853-aa2d-4405-adc1-3f6c81aafce9",

@@ -216,6 +216,36 @@
                     "kind": 1,
                     "name": "gfx_draw_rectangle",
                     "returnType": 2
+                },
+                {
+                    "id": "cad0957a-7c00-4538-b46b-4cec254bb924",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        2
+                    ],
+                    "externalName": "gfx_set_blend_enabled",
+                    "help": "gfx_set_blend_enabled(enable);",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "gfx_set_blend_enabled",
+                    "returnType": 2
+                },
+                {
+                    "id": "29a86bc6-c9e5-4f3d-84ab-daccc1401c0c",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        
+                    ],
+                    "externalName": "gfx_get_blend_enabled",
+                    "help": "gfx_get_blend_enabled();",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "gfx_get_blend_enabled",
+                    "returnType": 2
                 }
             ],
             "init": "",
@@ -230,7 +260,9 @@
                 "9ee79982-bf06-4862-b51c-704e4f128892",
                 "e15a546e-620f-4db9-82c0-ca7672637078",
                 "eb254b5f-2743-42aa-ad4e-250ab2bbe344",
-                "23582bad-8671-4ad3-87e1-24764f5e914d"
+                "23582bad-8671-4ad3-87e1-24764f5e914d",
+                "cad0957a-7c00-4538-b46b-4cec254bb924",
+                "29a86bc6-c9e5-4f3d-84ab-daccc1401c0c"
             ],
             "origname": "",
             "uncompress": false
@@ -254,5 +286,16 @@
     "packageID": "",
     "productID": "",
     "sourcedir": "",
+    "tvosProps": false,
+    "tvosSystemFrameworkEntries": [
+        
+    ],
+    "tvosThirdPartyFrameworkEntries": [
+        
+    ],
+    "tvosclassname": null,
+    "tvosmaccompilerflags": null,
+    "tvosmaclinkerflags": null,
+    "tvosplistinject": null,
     "version": "0.0.1"
 }

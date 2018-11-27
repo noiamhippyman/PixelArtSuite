@@ -1,25 +1,100 @@
 
-gfx_set_screen_buffer(buffer_get_address(layer1Buffer));
+if (keyboard_check_pressed(vk_f1)) {
+	gfx_set_blend_enabled(!gfx_get_blend_enabled());
+}
 
-//blue background
-gfx_clear_screen(0,0,255,255);
-
-//red pixel at 4,4
-gfx_set_pixel(4,4,255,0,0,255);
-
-//transparent green diagonal line from top-left to bottom-right
-gfx_draw_line(0,0,canvasWidth,canvasHeight,0,255,0,128);
-
-//black outline of circle centered on canvas
-gfx_draw_circle(canvasWidth/2,canvasHeight/2,canvasWidth/4,0,0,0,255,true);
-
-//white outline of square all the way around canvas
-gfx_draw_rectangle(0,0,canvasWidth,canvasHeight,255,255,255,128,true);
-
-
+if (mouse_check_button(mb_left)) {
+	var blendEnabled = gfx_get_blend_enabled();
+	gfx_draw_circle(mouse_x,mouse_y,5,120,12,140,blendEnabled ? 32 : 255,false);
+    gfx_set_pixel(mouse_x,mouse_y,0,255,0,blendEnabled ? 16 : 255);
+}
 
 if (!surface_exists(layer1Surface)) {
     layer1Surface = surface_create(canvasWidth,canvasHeight);
 }
 
 buffer_set_surface(layer1Buffer,layer1Surface,0,0,0);
+
+//Temporary way to move camera around
+var xaxis = key_to_axis(vk_right,vk_left);
+var yaxis = key_to_axis(vk_down,vk_up);
+if (xaxis != 0 || yaxis != 0) {
+	cameraX += xaxis * 5 / max(scale,1);
+	cameraY += yaxis * 5 / max(scale,1);
+}
+
+if (isDraggingCamera) {
+	
+	var mx = window_mouse_get_x();
+	var my = window_mouse_get_y();
+	var ww = window_get_width();
+	var wh = window_get_height();
+	
+	if (cameraDragX != mx) {
+		cameraX += (cameraDragX - mx) / scale;
+		cameraDragX = mx;
+	}
+	if (cameraDragY != my) {
+		cameraY += (cameraDragY - my) / scale;
+		cameraDragY = my;
+	}
+	
+	if (mx < 0) {
+		window_mouse_set(mx + ww, my);
+		cameraDragX += ww;
+	}
+	
+	if (mx > ww) {
+		window_mouse_set(mx - ww, my);
+		cameraDragX -= ww;
+	}
+	
+	if (my < 0) {
+		window_mouse_set(mx, my + wh);
+		cameraDragY += wh;
+	}
+	
+	if (my > wh) {
+		window_mouse_set(mx, my - wh);
+		cameraDragY -= wh;
+	}
+	
+	if (mouse_check_button_released(mb_middle)) {
+		isDraggingCamera = false;
+	}
+}
+
+if (mouse_check_button_pressed(mb_middle)) {
+	isDraggingCamera = true;
+	cameraDragX = window_mouse_get_x();
+	cameraDragY = window_mouse_get_y();
+}
+
+var mouseWheelAxis = mouse_wheel_up() - mouse_wheel_down();
+if (mouseWheelAxis != 0) {
+	scale += mouseWheelAxis * 0.125;
+	scale = clamp(scale,0.125, 10);
+	show_debug_message("Scale: " + string(scale) + "::" + string(current_time));
+}
+
+var cw = camera_get_view_width(camera);
+var ch = camera_get_view_height(camera);
+var dw = baseViewWidth / scale;
+var dh = baseViewHeight / scale;
+if (cw != dw) {
+	camera_set_view_size(camera,dw,dh);
+}
+
+camera_set_view_pos(camera, cameraX - camera_get_view_width(camera) / 2, cameraY - camera_get_view_height(camera) / 2);
+
+
+
+
+// Performance checking
+numFrames++;
+timer += delta_time;
+if (timer >= 1000000) {
+	timer -= 1000000;
+	window_set_caption("ms/frame: " + string(1000 / numFrames));
+	numFrames = 0;
+}

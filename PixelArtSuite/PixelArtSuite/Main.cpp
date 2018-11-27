@@ -19,8 +19,17 @@ GMS_DLL double gfx_free() {
 	return 0.0;
 }
 
+GMS_DLL double gfx_set_blend_enabled(double enable) {
+	gfx->SetBlendEnabled(enable);
+	return 0.0;
+}
+
+GMS_DLL double gfx_get_blend_enabled() {
+	return gfx->GetBlendEnabled() ? GMS_TRUE : GMS_FALSE;
+}
+
 GMS_DLL double gfx_get_screen_buffer() { return (unsigned)gfx->GetScreenBuffer(); }
-GMS_DLL double gfx_set_screen_buffer(char* buffer) {
+GMS_DLL double gfx_set_screen_buffer(unsigned char* buffer) {
 	gfx->SetScreenBuffer(buffer);
 	return 0.0;
 }

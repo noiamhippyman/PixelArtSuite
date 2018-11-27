@@ -14,8 +14,8 @@ int index_from_2d(int x, int y, int rowLength) {
 	return y * rowLength + x;
 }
 
-char* Renderer::GetScreenBuffer() { return m_screenBuffer; }
-void Renderer::SetScreenBuffer(char* buffer) { m_screenBuffer = buffer; }
+unsigned char* Renderer::GetScreenBuffer() { return m_screenBuffer; }
+void Renderer::SetScreenBuffer(unsigned char* buffer) { m_screenBuffer = buffer; }
 
 uint32 Renderer::GetScreenWidth() { return m_screenWidth; }
 void Renderer::SetScreenWidth(uint32 width) { m_screenWidth = width; SetScreenBufferSize(); }
@@ -26,38 +26,80 @@ void Renderer::SetScreenHeight(uint32 height) { m_screenHeight = height; SetScre
 bool Renderer::GetNeedsUpdate() { return m_screenNeedsUpdate; }
 void Renderer::SetNeedsUpdate() { m_screenNeedsUpdate = true; }
 
+bool Renderer::GetBlendEnabled() { return m_blendEnabled; }
+void Renderer::SetBlendEnabled(bool enable) { m_blendEnabled = enable; }
+
 uint32 Renderer::GetScreenBufferSize() { return m_screenBufferSize; }
 void Renderer::SetScreenBufferSize() { m_screenBufferSize = GetScreenWidth() * GetScreenHeight() * sizeof(uint32); }
 
-void Renderer::ClearScreen(char r, char g, char b, char a)
+void Renderer::ClearScreen(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
-	char* buff = GetScreenBuffer();
+	unsigned char* buff = GetScreenBuffer();
 	int   size = GetScreenBufferSize();
 	for (int i = 0; i < size; i += 4) {
 		buff[i] = r;
 		buff[i + 1] = g;
 		buff[i + 2] = b;
 		buff[i + 3] = a;
+		//int r2 = buff[i] + r;
+		//int g2 = buff[i+1] + g;
+		//int b2 = buff[i+2] + b;
+		//int a2 = buff[i+3] + a;
+		//buff[i] = r2 < buff[i] ? 255 : r2;
+		//buff[i + 1] = g2 < buff[i + 1] ? 255 : g2;
+		//buff[i + 2] = b2 < buff[i + 2] ? 255 : b2;
+		//buff[i + 3] = a2 < buff[i + 3] ? 255 : a2;
+		
+		//buff[i] = std::min(buff[i] + r, 255);
+		//buff[i + 1] = std::min(buff[i + 1] + g, 255);
+		//buff[i + 2] = std::min(buff[i + 2] + b, 255);
+		//buff[i + 3] = std::min(buff[i + 3] + a, 255);
+		
 	}
 	SetNeedsUpdate();
 }
 
-void Renderer::SetPixel(int x, int y, char r, char g, char b, char a)
+void Renderer::SetPixel(int x, int y, unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
-	char* buff = GetScreenBuffer();
+	unsigned char* buff = GetScreenBuffer();
 	int width = GetScreenWidth();
 	if (x < 0 || x >= width || y < 0 || y >= GetScreenHeight()) return;
 
 	int i = index_from_2d(x, y, width) * 4;
-	buff[i] = r;
-	buff[i + 1] = g;
-	buff[i + 2] = b;
-	buff[i + 3] = a;
+
+	if (!GetBlendEnabled()) {
+		buff[i] = r;
+		buff[i + 1] = g;
+		buff[i + 2] = b;
+		buff[i + 3] = a;
+	} else {
+
+		// Add blend mode
+		buff[i] = std::min(buff[i] + r, 255);
+		buff[i + 1] = std::min(buff[i + 1] + g, 255);
+		buff[i + 2] = std::min(buff[i + 2] + b, 255);
+		buff[i + 3] = std::min(buff[i + 3] + a, 255);
+	}
+	
+
+	//int r2 = buff[i] + r;
+	//int g2 = buff[i + 1] + g;
+	//int b2 = buff[i + 2] + b;
+	//int a2 = buff[i + 3] + a;
+	//buff[i] = r2 < buff[i] ? 255 : r2;
+	//buff[i + 1] = g2 < buff[i + 1] ? 255 : g2;
+	//buff[i + 2] = b2 < buff[i + 2] ? 255 : b2;
+	//buff[i + 3] = a2 < buff[i + 3] ? 255 : a2;
+	
+	//buff[i] = std::min(buff[i] + r, 255);
+	//buff[i + 1] = std::min(buff[i + 1] + g, 255);
+	//buff[i + 2] = std::min(buff[i + 2] + b, 255);
+	//buff[i + 3] = std::min(buff[i + 3] + a, 255);
 
 	SetNeedsUpdate();
 }
 
-void Renderer::DrawLine(float x1, float y1, float x2, float y2, char r, char g, char b, char a)
+void Renderer::DrawLine(float x1, float y1, float x2, float y2, unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
 	//source: https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#C.2B.2B
 	const bool steep = fabs(y2 - y1) > fabs(x2 - x1);
@@ -98,7 +140,7 @@ void Renderer::DrawLine(float x1, float y1, float x2, float y2, char r, char g, 
 	//SetNeedsUpdate();
 }
 
-void Renderer::DrawCircle(int x, int y, int radius, char r, char g, char b, char a, bool outline)
+void Renderer::DrawCircle(int x, int y, int radius, unsigned char r, unsigned char g, unsigned char b, unsigned char a, bool outline)
 {
 	//outlined-circle source: https://rosettacode.org/wiki/Bitmap/Midpoint_circle_algorithm#C
 	//filled-circle source: https://stackoverflow.com/a/1237519
@@ -153,7 +195,7 @@ void Renderer::DrawCircle(int x, int y, int radius, char r, char g, char b, char
 	//SetNeedsUpdate();
 }
 
-void Renderer::DrawRectangle(int x1, int y1, int x2, int y2, char r, char g, char b, char a, bool outline)
+void Renderer::DrawRectangle(int x1, int y1, int x2, int y2, unsigned char r, unsigned char g, unsigned char b, unsigned char a, bool outline)
 {
 	if (outline) {
 		//Draw outlined rectangle

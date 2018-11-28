@@ -1,9 +1,5 @@
 if (!canvas_exists(canvas) || !isUsingTool) exit;
 
-// Clear any previous drawn stuff on internal editor canvas
-canvas_clear(__editor_canvas,0,0,0,0);
-
-
 // Apply action to project canvas on release
 switch (toolMode) {
 	case enCanvasEditorTool.DrawCircle:

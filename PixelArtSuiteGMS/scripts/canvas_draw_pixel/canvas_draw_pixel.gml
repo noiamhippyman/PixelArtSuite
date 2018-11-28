@@ -15,4 +15,5 @@ var surface = canvas_get_surface(canvas);
 
 gfx_set_screen_target(buffer,width,height);
 gfx_set_pixel(cx,cy,cr,cg,cb,ca);
-buffer_set_surface(buffer,surface,0,0,0);
+
+if (surface_exists(surface)) buffer_set_surface(buffer,surface,0,0,0);

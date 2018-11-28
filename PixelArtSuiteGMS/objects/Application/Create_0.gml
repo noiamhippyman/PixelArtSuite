@@ -1,7 +1,7 @@
 gfx_init();
 
 canvasEditor = instance_create_layer(0,0,"Instances",CanvasEditor);
-
+viewport = instance_create_layer(room_width/2,room_height/2,"Instances",Viewport);
 
 canvas = canvas_create(320,320);
 canvas_editor_set_canvas(canvasEditor,canvas);

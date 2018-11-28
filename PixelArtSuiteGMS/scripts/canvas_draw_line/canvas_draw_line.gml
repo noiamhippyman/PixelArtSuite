@@ -17,4 +17,5 @@ var surface = canvas_get_surface(canvas);
 
 gfx_set_screen_target(buffer,width,height);
 gfx_draw_line(x1,y1,x2,y2,cr,cg,cb,ca);
-buffer_set_surface(buffer,surface,0,0,0);
+
+if (surface_exists(surface)) buffer_set_surface(buffer,surface,0,0,0);

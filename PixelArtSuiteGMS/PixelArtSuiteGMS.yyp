@@ -95,6 +95,14 @@
             }
         },
         {
+            "Key": "2700dd45-802e-493c-b635-a97ea41e6d0f",
+            "Value": {
+                "id": "18406a31-9823-4779-a3b2-c33d22dd2ca3",
+                "resourcePath": "scripts\\canvas_editor_exists\\canvas_editor_exists.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "276c74ae-5198-4e46-aad6-d0d8131df07b",
             "Value": {
                 "id": "ed4445e9-9ae5-49d5-a835-c10b98470307",
@@ -172,6 +180,14 @@
                 "id": "d0bb965e-cd59-4df7-a469-06d57a3eabd0",
                 "resourcePath": "views\\4b61032b-f854-4d7c-94af-363a19b7d340.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "555024e7-bc93-4a22-b882-14583c265bef",
+            "Value": {
+                "id": "4fe32361-a361-4692-a8c3-14700c8b5345",
+                "resourcePath": "scripts\\canvas_editor_get_tool\\canvas_editor_get_tool.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -492,8 +508,10 @@
         "264c04b8-7a3f-43e9-a557-532664ae21eb",
         "e348d91b-801c-43c9-bbf2-702e414a708f",
         "c73926e7-95a7-406f-94c2-56ad6b5bfe5d",
+        "2700dd45-802e-493c-b635-a97ea41e6d0f",
         "4b1ecef4-d40f-4d75-a2df-5cdb3a40d173",
-        "bf36dac3-9202-4d43-9e76-24365ba0154e"
+        "bf36dac3-9202-4d43-9e76-24365ba0154e",
+        "555024e7-bc93-4a22-b882-14583c265bef"
     ],
     "tutorial": ""
 }

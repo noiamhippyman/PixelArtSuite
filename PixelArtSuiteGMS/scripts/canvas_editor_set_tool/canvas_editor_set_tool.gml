@@ -1,7 +1,8 @@
 /// @func canvas_editor_set_tool
-/// @args id,CanvasEditorTool
+/// @args id,tool
 var editor = argument0;
 var tool = argument1;
 
+if (!canvas_editor_exists(editor)) exit;
+
 editor.toolMode = tool;
-canvas_clear(editor.__editor_canvas,0,0,0,0);

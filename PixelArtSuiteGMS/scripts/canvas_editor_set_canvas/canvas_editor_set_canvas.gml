@@ -1,9 +1,9 @@
 /// @func canvas_editor_set_canvas
-/// @args id,canvasID
+/// @args id,canvas
 var editor = argument0;
 var canvas = argument1;
 
-if (!instance_exists(editor) || editor.object_index != CanvasEditor) exit;
+if (!canvas_editor_exists(editor)) exit;
 
 editor.canvas = canvas;
 

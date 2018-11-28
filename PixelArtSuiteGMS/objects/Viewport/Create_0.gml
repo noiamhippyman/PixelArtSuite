@@ -1,6 +1,9 @@
 var ww = window_get_width();
 var wh = window_get_height();
 
+window_set_min_width(320);
+window_set_min_height(240);
+
 camera = camera_create_view(x-ww/2, y-wh/2, ww, wh);
 camera_set_view_size(camera, ww, wh);
 

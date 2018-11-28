@@ -11,8 +11,8 @@ var offY = wmy - panY;
 panX = wmx;
 panY = wmy;
 
-x -= offX;
-y -= offY;
+x -= offX / viewScale;
+y -= offY / viewScale;
 
 // Mouse-window wrapping
 var needToWrapMouse = false;

@@ -6,8 +6,7 @@ var wh = window_get_height();
 // View Scaling
 var mouseWheelAxis = mouse_wheel_up() - mouse_wheel_down();
 if (mouseWheelAxis != 0) {
-	viewScale = max(viewScale + mouseWheelAxis * 0.125, 0.125);
-	
+	viewScale = max(viewScale + mouseWheelAxis, 1);
 	camera_set_view_size(camera,ww/viewScale,wh/viewScale);
 	
 }
@@ -26,7 +25,7 @@ if (winResize) {
 	}
 	
 	camera_set_view_pos(camera, camera_get_view_x(camera)+offX/viewScale, camera_get_view_y(camera)+offY/viewScale);
-	camera_set_view_size(camera,ww/viewScale,wh/viewScale);
+	camera_set_view_size(camera,floor(ww/viewScale),floor(wh/viewScale));
 	view_set_wport(viewIndex,ww);
 	view_set_hport(viewIndex,wh);
 	

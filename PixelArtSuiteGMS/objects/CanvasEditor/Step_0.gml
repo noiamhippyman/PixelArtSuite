@@ -10,9 +10,9 @@ canvasMouseY = mouse_y - y;
 
 #region Temporary Input
 
-var mouseWheelAxis = mouse_wheel_up() - mouse_wheel_down();
+var brushSizeAxis = key_to_axis(vk_pageup,vk_pagedown);
 
-toolBrushSize = max(toolBrushSize + mouseWheelAxis, 1);
+toolBrushSize = max(toolBrushSize + brushSizeAxis, 1);
 
 if (keyboard_check_pressed(ord("D"))) canvas_editor_set_tool(id,enCanvasEditorTool.Draw);
 if (keyboard_check_pressed(ord("C"))) canvas_editor_set_tool(id,enCanvasEditorTool.DrawCircle);

@@ -32,7 +32,7 @@
             "constants": [
                 
             ],
-            "copyToTargets": -1,
+            "copyToTargets": 144678176683983086,
             "filename": "PixelArtSuite.dll",
             "final": "",
             "functions": [
@@ -263,6 +263,46 @@
                 "23582bad-8671-4ad3-87e1-24764f5e914d",
                 "cad0957a-7c00-4538-b46b-4cec254bb924",
                 "29a86bc6-c9e5-4f3d-84ab-daccc1401c0c"
+            ],
+            "origname": "",
+            "uncompress": false
+        },
+        {
+            "id": "1ec335d7-457b-4065-99cc-40945dbb49f3",
+            "modelName": "GMExtensionFile",
+            "mvc": "1.0",
+            "ProxyFiles": [
+                
+            ],
+            "constants": [
+                
+            ],
+            "copyToTargets": -1,
+            "filename": "extGFX.gml",
+            "final": "",
+            "functions": [
+                {
+                    "id": "bb29d14e-92cd-4958-b264-d14c85bd869c",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        2,
+                        2,
+                        2
+                    ],
+                    "externalName": "gfx_set_screen_target",
+                    "help": "gfx_set_screen_target(buffer,width,height);",
+                    "hidden": false,
+                    "kind": 2,
+                    "name": "gfx_set_screen_target",
+                    "returnType": 2
+                }
+            ],
+            "init": "",
+            "kind": 2,
+            "order": [
+                "bb29d14e-92cd-4958-b264-d14c85bd869c"
             ],
             "origname": "",
             "uncompress": false

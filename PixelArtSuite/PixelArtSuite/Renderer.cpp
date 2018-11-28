@@ -23,7 +23,7 @@ void Renderer::SetScreenWidth(uint32 width) { m_screenWidth = width; SetScreenBu
 uint32 Renderer::GetScreenHeight() { return m_screenHeight; }
 void Renderer::SetScreenHeight(uint32 height) { m_screenHeight = height; SetScreenBufferSize(); }
 
-bool Renderer::GetNeedsUpdate() { return m_screenNeedsUpdate; }
+bool Renderer::GetNeedsUpdate() { bool ret = m_screenNeedsUpdate; m_screenNeedsUpdate = false; return ret; }
 void Renderer::SetNeedsUpdate() { m_screenNeedsUpdate = true; }
 
 bool Renderer::GetBlendEnabled() { return m_blendEnabled; }
